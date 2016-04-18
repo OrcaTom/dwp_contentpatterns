@@ -1,0 +1,55 @@
+// Import GOV.UK elements, this will import the frontend toolkit and some base styles.
+// Take a look in _govuk-elements.scss to see which files are imported.
+@import 'govuk-elements';
+
+// Take a look at patterns.scss to see which files are imported.
+@import 'patterns';
+
+// Font Overrides
+@import 'NotoSans';
+*:not(.token) { font-family: 'NotoSans', arial, sans-serif; }
+#proposition-name { font-family: 'NotoSans', arial, sans-serif !important; }
+
+// Import prism for code syntax
+@import 'prism';
+// Import tabs styling
+@import 'tabbing';
+
+.built-by-dwp {
+    font-size: 16px;
+}
+
+// back link
+
+.back-link {
+	padding-top: 20px;
+}
+
+// example box
+
+.example {
+	position: relative; 
+	overflow: hidden; 
+	background: #fff; 
+	border: 1px solid #bfc1c3; 
+	outline: 15px solid #f8f8f8; 
+	margin: 30px 0 60px 0; 
+	padding: 15px;
+}
+
+// form styles
+
+legend {
+	font-weight: 700;
+}
+
+// declaration
+
+.legal_message {
+	margin: 30px 0 30px; 
+	padding-left: 60px; 
+	background-image: url(https://assets.digital.cabinet-office.gov.uk/static/icon-important-2x-c948a58b675598f444f7f8fffd9ebf3d740905da332308c65b0dcb4af880d7ba.png); 
+	background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-important-aab708504574eda2dc4a4de0802be03dbbd70d57b422de93e55e265c9ae2fc43.png) no-repeat scroll 0 0.5em; 
+	background-size: 34px 34px
+}
+
