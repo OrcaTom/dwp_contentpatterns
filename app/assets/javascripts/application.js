@@ -123,5 +123,11 @@ $(document).ready(function() {
   var toggleContent = new ShowHideContent();
   toggleContent.showHideRadioToggledContent();
   toggleContent.showHideCheckboxToggledContent();
+  
+  $('.js-subsection-title').on('click',function(e)
+  {
+    e.preventDefault();
+    $(this).closest('.js-openable').toggleClass('closed');
+  });
 
 });
