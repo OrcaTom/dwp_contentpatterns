@@ -1,0 +1,68 @@
+{% extends "layout_dwp.html" %}
+
+{% block page_title %}
+  DWP content design patterns
+{% endblock %}
+
+{% block content %}
+  <main id="content" role="main">
+    <div class="grid-row">
+      <div class="column-two-thirds">
+
+        <h1 class="heading-xlarge">DWP content design patterns</h1>
+
+        <p class="lede">
+        This guide shows you content patterns for DWP services. You should only use it when
+        the <a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/index.html">
+        GOV.UK pattern library</a> doesn't have a solution.
+        </p>
+
+        <hr />
+
+        <!--
+        <h2 class="heading-medium">Visual style</h2>
+
+        <p class="text">
+        If you're working on a citizen-facing service that's hosted on GOV.UK,
+        use the <a href="http://govuk-elements.herokuapp.com/">GOV.UK elements guide</a>
+        (which includes code snippets).
+        </p>
+        <p class="text">
+          If you're working on a service that isn't hosted on GOV.UK or a service
+          for DWP staff, use the <a href="http://dwp-elements.herokuapp.com/">DWP elements guide</a>.
+        -->
+        <h2 class="heading-large">General content patterns</h2>
+        <ul class="list list-bullet">
+          <li><a href="/additemstoalist">Add item(s) to a list</a></li>
+          <li><a href="#">Personal pronouns</a></li>
+          <li><a href="#">Signing in and out</a></li>
+          <li><a href="#">Referring to users</a></li>
+          <li><a href="#">Save and exit</a></li>
+          <li><a href="#">Linking to external websites</a></li>
+          <li><a href="#">Warnings and callouts</a></li>
+        </ul>
+        <h2 class="heading-large">Common pages</h2>
+        <ul class="list list-bullet">
+          <li><a href="#">Page not found (404s)</a></li>
+          <li><a href="#">Service unavailable (500s)</a></li>
+          <li><a href="#">Cookies pages</a></li>
+        </ul>
+        <h2 class="heading-large">Form elements</h2>
+        <ul class="list list-bullet">
+          <li><a href="#">Gathering bank details</a></li>
+          <li><a href="#">Consent to contact third parties</a></li>
+          <li><a href="#">Cookies pages</a></li>
+          <li><a href="#">Feedback pages</a></li>
+          <li><a href="#">Error messages</a></li>
+          <li><a href="declaration">Legal declarations</a></li>
+        </ul>
+
+        <h2 class="heading-large">Staff interfaces</h2>
+        <ul class="list list-bullet">
+          <li><a href="/adminmenus">Admin menus</a></li>
+          <li><a href="#">Search results</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+{% endblock %}
