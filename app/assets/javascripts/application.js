@@ -129,5 +129,13 @@ $(document).ready(function() {
     e.preventDefault();
     $(this).closest('.js-openable').toggleClass('closed');
   });
+  
+  $('.js-subsection-body').each(function(i,el)
+  {
+    if (!$(el).children().length)
+    {
+      $(el).closest('.js-openable').hide();
+    }
+  });
 
 });
