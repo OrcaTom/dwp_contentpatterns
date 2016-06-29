@@ -8,6 +8,7 @@ Sass is an extension of CSS that gives a load of extra features useful in produc
 
 SCSS was chosen because you can paste CSS into it without breaking it which is useful for prototyping. Using SCSS means you can also use the [govuk_frontend_toolkit](https://github.com/alphagov/govuk_frontend_toolkit) Sass libraries which include styles for colours, typography, cross-browser fixes and other things which are used across GOV.UK.
 
+<<<<<<< HEAD
 ## We use Node Sass
 
 The prototype kit uses [node-sass](https://github.com/andrew/node-sass), a node version of of [lib-sass](https://github.com/hcatlin/libsass). It's still a work in progress and so you may find a few things don't work, the most important of which is that [@extend](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#extend) mostly doesn't. 
@@ -24,6 +25,8 @@ We use node-sass for one reason: to keep it as quick as possible to get up and r
 
 Your best bet is to use the Ruby version of Sass to compile your SCSS. Functionality for this out of the box will be added soon. Until then, check the docs on using the [Sass command-line tool](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#using_sass) or swap out the [grunt-sass](https://github.com/sindresorhus/grunt-sass) plugin for [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass).
 
+=======
+>>>>>>> d8eba1f6bf3bdae561048f0ec2c0b27f23662655
 ## Writing code
 
 You write your Sass in [app/assets/sass](../app/assets/sass) and the prototype kit will compile it into the CSS used in your page (found in /public/stylesheets). The app watches your files so this will happen automatically.
@@ -51,6 +54,10 @@ The line `@import '_typography';` makes all the code in [_typography.scss](https
 
 ## Imports
 
+<<<<<<< HEAD
 Imports are done from either the toolkit's [stylesheets](https://github.com/alphagov/govuk_frontend_toolkit/tree/master/stylesheets/) folder or the [app/assets/sass](../app/assets/sass) folder application.scss sits in. The later means you can create your own partial files to import. 
+=======
+Imports are done from either the toolkit's [stylesheets](https://github.com/alphagov/govuk_frontend_toolkit/tree/master/stylesheets/) folder or the [app/assets/sass](../app/assets/sass) folder application.scss sits in. The latter means you can create your own partial files to import. 
+>>>>>>> d8eba1f6bf3bdae561048f0ec2c0b27f23662655
 
 Note that the convention is to start the name of any partial with an underscore, like those in the toolkit.

@@ -8,6 +8,11 @@ This guide will walk you through setting up a git repo (repository) and committi
 
 > Git is not the same as GitHub. Git stores versions of your work, and lets you collaborate more easily with others. Github puts it all online with a nice web interface.
 
+<<<<<<< HEAD
+=======
+You'll need to install Git first. Installation instructions for Mac, Windows, and Linux can be found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). Once you've done that, read below to get set up.
+
+>>>>>>> d8eba1f6bf3bdae561048f0ec2c0b27f23662655
 ## 1) Set up Git
 
 Before using Git, it's best to set it up with your name and email address, this helps other people know who worked on what.
@@ -69,9 +74,17 @@ Run `git status` to check the files you’ve got in the stage. You will see a li
 
 Run:
 ```
+<<<<<<< HEAD
 git commit -m “First commit”
 ```
 The message you put in the speech marks should be descriptive of the changes you are committing. This will help in the future if you look back at your changes and want to know why you made them.
+=======
+git commit -m "First commit"
+```
+The message you put in the speech marks should be descriptive of the changes you are committing. This will help in the future if you or someone else needs to look back at your changes and know why you made them.
+
+More information on [writing good commit messages](https://github.com/alphagov/styleguides/blob/master/git.md#commit-messages) is in the GDS styleguide.
+>>>>>>> d8eba1f6bf3bdae561048f0ec2c0b27f23662655
 
 ## 5) Check Git status again
 

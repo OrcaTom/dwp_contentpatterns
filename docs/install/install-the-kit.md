@@ -2,7 +2,11 @@
 
 ## Download the kit as a zip
 
+<<<<<<< HEAD
 The simplest way to get the kit is to [download it as a zip](https://github.com/alphagov/govuk_prototype_kit/archive/v2.1.0.zip). You'll use a new copy of the kit for each new prototype you make. That way your prototypes don’t interfere with each other.
+=======
+The simplest way to get the kit is to [download it as a zip](https://github.com/alphagov/govuk_prototype_kit/archive/v3.0.0.zip). You'll use a new copy of the kit for each new prototype you make. That way your prototypes don’t interfere with each other.
+>>>>>>> d8eba1f6bf3bdae561048f0ec2c0b27f23662655
 
 ### Decide where you want to keep your prototypes
 
@@ -20,7 +24,11 @@ Create a folder called `projects` in your `Documents` or `My Documents` folder.
 
 ### Unzip the kit
 
+<<<<<<< HEAD
 Unzip the kit you downloaded - you should end up with a folder called `govuk_prototype_kit-2.1.0`
+=======
+Unzip the kit you downloaded - you should end up with a folder called `govuk_prototype_kit-3.0.0`
+>>>>>>> d8eba1f6bf3bdae561048f0ec2c0b27f23662655
 
 ### Rename the kit
 

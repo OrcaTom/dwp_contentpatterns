@@ -1,5 +1,6 @@
-var path = require('path'),
+  var path = require('path'),
     express = require('express'),
+    browserSync = require('browser-sync'),
     nunjucks = require('express-nunjucks'),
     routes = require(__dirname + '/app/routes.js'),
     favicon = require('serve-favicon'),
@@ -10,18 +11,18 @@ var path = require('path'),
     port = (process.env.PORT || config.port),
     utils = require(__dirname + '/lib/utils.js'),
     packageJson = require(__dirname + '/package.json'),
-    filters = require(__dirname + '/app/filters.js'),
-    _ = require('lodash'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
-    releaseVersion = packageJson.version;
+    releaseVersion = packageJson.version,
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
-    useAuth  = process.env.USE_AUTH || config.useAuth;
+    useAuth  = process.env.USE_AUTH || config.useAuth,
+    useHttps  = process.env.USE_HTTPS || config.useHttps;
 
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
+    useHttps   = useHttps.toLowerCase();
 
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
@@ -39,10 +40,14 @@ nunjucks.setup({
   noCache: true
 }, app);
 
+// require core and custom filters, merges to one object
+// and then add the methods to nunjucks env obj
 nunjucks.ready(function(nj) {
-  // iterate over filter items and add each to nunjucks
-  Object.keys(filters.items).forEach(function(filterName) {
-    nj.addFilter(filterName, filters.items[filterName]);
+  var coreFilters = require(__dirname + '/lib/core_filters.js')(nj),
+    customFilters = require(__dirname + '/app/filters.js')(nj),
+    filters = Object.assign(coreFilters, customFilters);
+  Object.keys(filters).forEach(function(filterName) {
+    nj.addFilter(filterName, filters[filterName]);
   });
 });
 
@@ -69,13 +74,27 @@ app.use(function (req, res, next) {
 
 // Add variables that are available in all views
 app.use(function (req, res, next) {
-  _.merge(res.locals,{
-    serviceName: config.serviceName,
-    cookieText: config.cookieText,
-    releaseVersion: 'v' + releaseVersion,
-    postData: (req.body ? req.body : false)
-  });
+  res.locals.serviceName=config.serviceName;
+  res.locals.cookieText=config.cookieText;
+  res.locals.releaseVersion="v" + releaseVersion;
   next();
+});
+
+// Force HTTPs on production connections
+if (env === 'production' && useHttps === 'true'){
+  app.use(utils.forceHttps);
+}
+
+// Disallow search index idexing
+app.use(function (req, res, next) {
+  // Setting headers stops pages being indexed even if indexed pages link to them.
+  res.setHeader('X-Robots-Tag', 'noindex');
+  next();
+});
+
+app.get('/robots.txt', function (req, res) {
+  res.type('text/plain');
+  res.send("User-agent: *\nDisallow: /");
 });
 
 // routes (found in app/routes.js)
@@ -87,8 +106,17 @@ if (typeof(routes) != "function"){
   app.use("/", routes);
 }
 
+// Strip .html and .htm if provided
+app.get(/\.html?$/i, function (req, res){
+  var path = req.path;
+  var parts = path.split('.');
+  parts.pop();
+  path = parts.join('.');
+  res.redirect(path);
+});
+
 // auto render any view that exists
-app.all(/^\/([^.]+)$/, function (req, res) {
+app.get(/^\/([^.]+)$/, function (req, res) {
 
   var path = (req.params[0]);
 
@@ -114,4 +142,23 @@ console.log("\nGOV.UK Prototype kit v" + releaseVersion);
 console.log("\nNOTICE: the kit is for building prototypes, do not use it for production services.");
 
 // start the app
-utils.findAvailablePort(app);
+utils.findAvailablePort(app, function(port) {
+  console.log('Listening on port ' + port + '   url: http://localhost:' + port);
+  if (env === 'production') {
+    app.listen(port);
+  } else {
+    app.listen(port-50,function()
+    {
+      browserSync({
+        proxy:'localhost:'+(port-50),
+        port:port,
+        ui:false,
+        files:['public/**/*.*','app/views/**/*.*'],
+        ghostmode:false,
+        open:false,
+        notify:false,
+        logLevel: "error"
+      });
+    });
+  }
+});
